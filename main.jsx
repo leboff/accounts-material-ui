@@ -1,5 +1,5 @@
 import React from 'react';
-import {Accounts, STATES} from './fix.js'; // TODO: back to normal once std:accounts-ui is fixed
+import {Accounts, STATES, FormMessages} from 'meteor/std:accounts-ui';
 import {RaisedButton, FlatButton, FontIcon, TextField, Divider, Snackbar} from 'material-ui';
 import {socialButtonsColors, socialButtonIcons} from './social_buttons_config';
 import {green500, red500, yellow600, lightBlue600} from 'material-ui/styles/colors';
@@ -127,28 +127,36 @@ class Field extends Accounts.ui.Field {
 			onChange,
 			required = false,
 			className,
-			defaultValue = ""
+			defaultValue = "",
+			message = {message:"",type:"info"}
 		} = this.props;
 		const {
 			mount = true
 		} = this.state;
+		this.message = (this.props.message || {message:"",type:"info"});
 		return mount
-			? (<TextField
-				floatingLabelText={label}
-				hintText={hint}
-				onChange={onChange}
-				fullWidth={true}
-				defaultValue={defaultValue}
-				name={id}
-				type={type}
-				ref={(ref) => this.input = ref}
-				required={required
-				? "required"
-				: ""}
-				autoCapitalize={type == 'email'
-				? 'none'
-				: false}
-				autoCorrect="off"/>)
+			? (<div>
+					<TextField
+						floatingLabelText={label}
+						hintText={hint}
+						onChange={onChange}
+						fullWidth={true}
+						defaultValue={defaultValue}
+						name={id}
+						type={type}
+						ref={(ref) => this.input = ref}
+						required={required
+						? "required"
+						: ""}
+						autoCapitalize={type == 'email'
+						? 'none'
+						: false}
+						autoCorrect="off"/>
+					<span className={['message', (this.message.type)].join(' ').trim()}>
+						{this.message.message}
+					</span>
+				</div>
+			)
 			: null;
 	}
 }
