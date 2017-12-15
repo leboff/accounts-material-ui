@@ -17,6 +17,10 @@ class LoginForm extends Accounts.ui.LoginForm {
   componentWillMount() {
     // FIXME hack to solve issue #18
   }
+  componentWillUnmount() {
+  	  // override, the default calls upon ReactMeteorData , which results in a null ref to this._meteorDataManager
+	  // boy that was tricky to find.
+  }
 }
 
 class Form extends Accounts.ui.Form {
