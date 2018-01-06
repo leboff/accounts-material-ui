@@ -102,7 +102,7 @@ class Button extends Accounts.ui.Button {
 					disabled={disabled}
 					style={{marginRight: '5px'}}
 					/>
-			)
+			);
 	}
 }
 class Fields extends Accounts.ui.Fields {
@@ -198,7 +198,7 @@ class SocialButtons extends Accounts.ui.SocialButtons {
 						);
 					})}
 				</div>
-			)
+			);
 		} else {
 			return null;
 		}
@@ -233,22 +233,22 @@ class FormMessage extends Accounts.ui.FormMessage {
       case 'warning':
         bodyStyle = {
           backgroundColor: yellow600
-        }
+        };
         break;
       case 'success':
         bodyStyle = {
           backgroundColor: green500
-        }
+        };
         break;
       case 'error':
         bodyStyle = {
           backgroundColor: red500
-        }
+        };
         break;
       case 'info':
         bodyStyle = {
           backgroundColor: lightBlue600
-        }
+        };
         break;
     }
 
