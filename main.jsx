@@ -64,7 +64,48 @@ class Form extends Accounts.ui.Form {
 }
 
 class Buttons extends Accounts.ui.Buttons {}
-class Button extends Accounts.ui.Button {
+class R15Button extends Accounts.ui.Button {
+	render() {
+		const {
+			label,
+			href = null,
+			type,
+			disabled = false,
+			onClick,
+			className,
+			icon
+		} = this.props;
+		return type == 'link'
+			? (
+				<FlatButton
+					href={href}
+					label={label}
+					icon={icon
+					? <FontIcon className={`fa ${icon}`}/>
+					: null}
+					className={className}
+					onTouchTap={onClick}
+					disabled={disabled}
+					style={{marginRight: '5px'}}
+					/>
+			)
+			: (
+				<RaisedButton
+					label={label}
+					icon={icon
+					? <FontIcon className={`fa ${icon}`}/>
+					: null}
+					primary={true}
+					type={type}
+					className={className}
+					onTouchTap={onClick}
+					disabled={disabled}
+					style={{marginRight: '5px'}}
+					/>
+			);
+	}
+}
+class R16Button extends Accounts.ui.Button {
 	render() {
 		const {
 			label,
@@ -154,7 +195,7 @@ class Field extends Accounts.ui.Field {
 						: ""}
 						autoCapitalize={type == 'email'
 						? 'none'
-						: false}
+						: 'words'}
 						autoCorrect="off"/>
 					<span className={['message', (this.message.type)].join(' ').trim()}>
 						{this.message.message}
@@ -271,7 +312,7 @@ class FormMessage extends Accounts.ui.FormMessage {
 Accounts.ui.LoginForm = LoginForm;
 Accounts.ui.Form = Form;
 Accounts.ui.Buttons = Buttons;
-Accounts.ui.Button = Button;
+Accounts.ui.Button = (React.version.startsWith("16"))?R16Button:R15Button;
 Accounts.ui.Fields = Fields;
 Accounts.ui.Field = Field;
 Accounts.ui.FormMessage = FormMessage;
