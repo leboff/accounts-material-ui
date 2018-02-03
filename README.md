@@ -1,22 +1,25 @@
 # React Accounts UI for using Material-UI
 
-[**Demo Here**](https://zetoff-accounts-material-ui-demo-dtegtmwdsl.now.sh)
+Fork of the apparently unmaintained [Zetoff/accounts-material-ui](https://github.com/Zetoff/accounts-material-ui), with react 16 and material-ui v1 support.
+Based on the work of [yanickrochon/accounts-material-ui](https://github.com/yanickrochon/accounts-material-ui/tree/material-ui-v1) and [ensemblebd/accounts-material-ui](https://github.com/ensemblebd/accounts-material-ui).
+
+This might be buggy. Feel free to send me a pull request, if you encounter something strange..
 
 ![React Accounts UI for using Material-UI](https://raw.githubusercontent.com/Zetoff/accounts-material-ui/master/accounts-material-ui.png)
 
-### Based on and extends std:accounts-ui
+### Based on and extends ensemblebd fork of std:accounts-ui
 
-[https://github.com/studiointeract/accounts-ui](https://github.com/studiointeract/accounts-ui)
+[https://github.com/ensemblebd/accounts-ui](https://github.com/ensemblebd/accounts-ui)
 
 ## Installation
 
-`meteor add zetoff:accounts-material-ui`
+Create a `packages` folder in the root of your meteor project. Then clone this repository there. Meteor will use the local repo in favor of the atmosphere package provided by zetoff.
 
 ### Dependencies
 
-In addition to React this package also depends on [material-ui](http://www.material-ui.com/). So make sure it is installed:
+In addition to React this package also depends on [material-ui](https://github.com/mui-org/material-ui). So make sure it is installed:
 
-`meteor npm install -S material-ui`
+`meteor npm install -S material-ui@next`
 
 ## Configuration
 
@@ -26,9 +29,10 @@ We support the standard [configuration in the account-ui package](http://docs.me
 
 ### Example setup (Meteor 1.3)
 
-`meteor add accounts-password`  
-`meteor add zetoff:accounts-material-ui`
-`meteor npm install -S material-ui`
+`meteor add accounts-password`
+`meteor npm install -S material-ui@next`
+`mkdir packages && cd packages`
+`git clone git@github.com:shoetten/accounts-material-ui.git`
 
 ```javascript
 
@@ -48,7 +52,7 @@ if (Meteor.isClient) {
 
 ## Example setup using FlowRouter (Meteor 1.3)
 
-`meteor add accounts-password`  
+`meteor add accounts-password`
 `meteor add zetoff:accounts-material-ui`
 `meteor npm install -S material-ui`
 
@@ -75,4 +79,4 @@ FlowRouter.route("/login", {
 
 ## Credits
 
-Made by Zetoff
+Originally made by Zetoff
