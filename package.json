@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Zetoff/accounts-material-ui",
   "dependencies": {
+    "mdi-material-ui": "^3.0.1",
     "tracker-component": "^1.3.21"
   },
   "devDependencies": {
