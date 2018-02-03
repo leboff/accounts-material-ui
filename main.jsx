@@ -1,8 +1,8 @@
 import React from 'react';
-import {Accounts, STATES, FormMessages} from 'meteor/std:accounts-ui';
-import {RaisedButton, FlatButton, FontIcon, TextField, Divider, Snackbar} from 'material-ui';
-import {socialButtonsColors, socialButtonIcons} from './social_buttons_config';
+import {Accounts, STATES} from 'meteor/std:accounts-ui';
+import {RaisedButton, FlatButton, FontIcon, TextField, Snackbar} from 'material-ui';
 import {green500, red500, yellow600, lightBlue600} from 'material-ui/styles/colors';
+import {socialButtonsColors, socialButtonIcons} from './social_buttons_config';
 
 /**
  * Form.propTypes = {
@@ -18,13 +18,13 @@ class LoginForm extends Accounts.ui.LoginForm {
     // FIXME hack to solve issue #18
   }
   componentWillUnmount() {
-  	  // override, the default calls upon ReactMeteorData , which results in a null ref to this._meteorDataManager
-	  // boy that was tricky to find.
+    // override, the default calls upon ReactMeteorData, which results
+    // in a null ref to this._meteorDataManager
+    // boy that was tricky to find.
   }
 }
 
 class Form extends Accounts.ui.Form {
-
   render() {
     const {
       hasPasswordService,
@@ -35,225 +35,244 @@ class Form extends Accounts.ui.Form {
       message,
       ready = true,
       className,
-      formState
+      formState,
     } = this.props;
+
     return (
       <form
-        ref={(ref) => this.form = ref}
-        className={["accounts", className].join(' ')}>
+        ref={(ref) => { this.form = ref; }}
+        className={['accounts', className].join(' ')}
+      >
         {Object.keys(fields).length > 0
-          ? (<Accounts.ui.Fields fields={fields}/>)
+          ? (<Accounts.ui.Fields fields={fields} />)
           : null}
-        <Accounts.ui.Buttons buttons={buttons}/>
-        <br/>
-        {formState == STATES.SIGN_IN || formState == STATES.SIGN_UP
+        <Accounts.ui.Buttons buttons={buttons} />
+        <br />
+        {formState === STATES.SIGN_IN || formState === STATES.SIGN_UP
           ? (
             <div className="or-sep">
-              <Accounts.ui.PasswordOrService oauthServices={oauthServices}/>
+              <Accounts.ui.PasswordOrService oauthServices={oauthServices} />
             </div>
           )
           : null}
-        {formState == STATES.SIGN_IN || formState == STATES.SIGN_UP
-          ? (<Accounts.ui.SocialButtons oauthServices={oauthServices}/>)
+        {formState === STATES.SIGN_IN || formState === STATES.SIGN_UP
+          ? (<Accounts.ui.SocialButtons oauthServices={oauthServices} />)
           : null}
-        <br/>
-        <Accounts.ui.FormMessage {...message}/>
+        <br />
+        <Accounts.ui.FormMessage {...message} />
       </form>
     );
   }
 }
 
 class Buttons extends Accounts.ui.Buttons {}
+
 class R15Button extends Accounts.ui.Button {
-	render() {
-		const {
-			label,
-			href = null,
-			type,
-			disabled = false,
-			onClick,
-			className,
-			icon
-		} = this.props;
-		return type == 'link'
-			? (
-				<FlatButton
-					href={href}
-					label={label}
-					icon={icon
-					? <FontIcon className={`fa ${icon}`}/>
-					: null}
-					className={className}
-					onTouchTap={onClick}
-					disabled={disabled}
-					style={{marginRight: '5px'}}
-					/>
-			)
-			: (
-				<RaisedButton
-					label={label}
-					icon={icon
-					? <FontIcon className={`fa ${icon}`}/>
-					: null}
-					primary={true}
-					type={type}
-					className={className}
-					onTouchTap={onClick}
-					disabled={disabled}
-					style={{marginRight: '5px'}}
-					/>
-			);
-	}
+  render() {
+    const {
+      label,
+      href = null,
+      type,
+      disabled = false,
+      onClick,
+      className,
+      icon,
+    } = this.props;
+
+    return type === 'link'
+      ? (
+        <FlatButton
+          href={href}
+          label={label}
+          icon={icon
+          ? <FontIcon className={`fa ${icon}`} />
+          : null}
+          className={className}
+          onTouchTap={onClick}
+          disabled={disabled}
+          style={{marginRight: '5px'}}
+        />
+      )
+      : (
+        <RaisedButton
+          label={label}
+          icon={icon
+          ? <FontIcon className={`fa ${icon}`} />
+          : null}
+          primary
+          type={type}
+          className={className}
+          onTouchTap={onClick}
+          disabled={disabled}
+          style={{marginRight: '5px'}}
+        />
+      );
+  }
 }
+
 class R16Button extends Accounts.ui.Button {
-	render() {
-		const {
-			label,
-			href = null,
-			type,
-			disabled = false,
-			onClick,
-			className,
-			icon
-		} = this.props;
-		return type == 'link'
-			? (
-				<FlatButton
-					href={href}
-					label={label}
-					icon={icon
-					? <FontIcon className={`fa ${icon}`}/>
-					: null}
-					className={className}
-					onTouchTap={onClick}
-					disabled={disabled}
-					style={{marginRight: '5px'}}
-					/>
-			)
-			: (
-				<RaisedButton
-					label={label}
-					icon={icon
-					? <FontIcon className={`fa ${icon}`}/>
-					: null}
-					primary={true}
-					type={type}
-					className={className}
-					onTouchTap={onClick}
-					disabled={disabled}
-					style={{marginRight: '5px'}}
-					/>
-			);
-	}
+  render() {
+    const {
+      label,
+      href = null,
+      type,
+      disabled = false,
+      onClick,
+      className,
+      icon,
+    } = this.props;
+    return type === 'link'
+      ? (
+        <FlatButton
+          href={href}
+          label={label}
+          icon={icon
+          ? <FontIcon className={`fa ${icon}`} />
+          : null}
+          className={className}
+          onTouchTap={onClick}
+          disabled={disabled}
+          style={{marginRight: '5px'}}
+        />
+      )
+      : (
+        <RaisedButton
+          label={label}
+          icon={icon
+          ? <FontIcon className={`fa ${icon}`} />
+          : null}
+          primary
+          type={type}
+          className={className}
+          onTouchTap={onClick}
+          disabled={disabled}
+          style={{marginRight: '5px'}}
+        />
+      );
+  }
 }
+
 class Fields extends Accounts.ui.Fields {
-	render() {
-		let {
-			fields = {},
-			className = ""
-		} = this.props;
-		return (
-			<div className={[className].join(' ')}>
-				{Object.keys(fields).map((id, i) => <div key={i}>
-					<Accounts.ui.Field {...fields[id]}/>
-					<br/>
-				</div>)}
-			</div>
-		);
-	}
+  render() {
+    const {
+      fields = {},
+      className = '',
+    } = this.props;
+    return (
+      <div className={[className].join(' ')}>
+        {Object.keys(fields).map((id, i) => (
+          <div key={i}>
+            <Accounts.ui.Field {...fields[id]} />
+            <br />
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
+
 class Field extends Accounts.ui.Field {
-	render() {
-		const {
-			id,
-			hint,
-			label,
-			type = 'text',
-			onChange,
-			required = false,
-			className,
-			defaultValue = "",
-			message = {message:"",type:"info"}
-		} = this.props;
-		const {
-			mount = true
-		} = this.state;
-		this.message = (this.props.message || {message:"",type:"info"});
-		return mount
-			? (<div>
-					<TextField
-						floatingLabelText={label}
-						hintText={hint}
-						onChange={onChange}
-						fullWidth={true}
-						defaultValue={defaultValue}
-						name={id}
-						type={type}
-						ref={(ref) => this.input = ref}
-						required={required
-						? "required"
-						: ""}
-						autoCapitalize={type == 'email'
-						? 'none'
-						: 'words'}
-						autoCorrect="off"/>
-					<span className={['message', (this.message.type)].join(' ').trim()}>
-						{this.message.message}
-					</span>
-				</div>
-			)
-			: null;
-	}
+  render() {
+    const {
+      id,
+      hint,
+      label,
+      type = 'text',
+      onChange,
+      required = false,
+      className,
+      defaultValue = '',
+      message = {message: '', type: 'info'},
+    } = this.props;
+    const {
+      mount = true,
+    } = this.state;
+    this.message = (this.props.message || {message: '', type: 'info'});
+
+    return mount
+      ? (
+        <div>
+          <TextField
+            floatingLabelText={label}
+            hintText={hint}
+            onChange={onChange}
+            fullWidth
+            defaultValue={defaultValue}
+            name={id}
+            type={type}
+            ref={(ref) => { this.input = ref; }}
+            required={required
+            ? 'required'
+            : ''}
+            autoCapitalize={type === 'email'
+            ? 'none'
+            : 'words'}
+            autoCorrect="off"
+          />
+          <span className={['message', (this.message.type)].join(' ').trim()}>
+            {this.message.message}
+          </span>
+        </div>
+      )
+      : null;
+  }
 }
+
 class SocialButtons extends Accounts.ui.SocialButtons {
-	render() {
-		let {
-			oauthServices = {},
-			className = "social-buttons"
-		} = this.props;
-		if (Object.keys(oauthServices).length > 0) {
-			return (
-				<div className={[className].join(' ')}>
-					{Object.keys(oauthServices).map((id, i) => {
-						let serviceClass = id.replace(/google|meteor\-developer/gi, (matched) => {
-							return socialButtonIcons[matched];
-						});
-						const {label, type, onClick, disabled} = oauthServices[id];
-						return (
-							<RaisedButton
-								key={i}
-								label={label}
-								type={type}
-								onTouchTap={onClick}
-								disabled={disabled}
-								className={serviceClass.length > 0
-								? `${serviceClass}`
-								: ''}
-								icon={serviceClass.length > 0
-								? <FontIcon className={`fa fa-${serviceClass}`}/>
-								: ''}
-								backgroundColor={socialButtonsColors[id].background}
-								labelColor={socialButtonsColors[id].label}
-								style={{marginRight: '5px'}}
-								/>
-						);
-					})}
-				</div>
-			);
-		} else {
-			return null;
-		}
+  render() {
+    let {
+      oauthServices = {},
+      className = 'social-buttons',
+    } = this.props;
 
-	}
+    if (Object.keys(oauthServices).length > 0) {
+      return (
+        <div className={[className].join(' ')}>
+          {Object.keys(oauthServices).map((id, i) => {
+            const serviceClass = id.replace(
+              /google|meteor\-developer/gi,
+              matched => socialButtonIcons[matched]
+            );
+            const {
+              label,
+              type,
+              onClick,
+              disabled,
+            } = oauthServices[id];
+
+            return (
+              <RaisedButton
+                key={i}
+                label={label}
+                type={type}
+                onTouchTap={onClick}
+                disabled={disabled}
+                className={serviceClass.length > 0
+                ? `${serviceClass}`
+                : ''}
+                icon={serviceClass.length > 0
+                ? <FontIcon className={`fa fa-${serviceClass}`} />
+                : ''}
+                backgroundColor={socialButtonsColors[id].background}
+                labelColor={socialButtonsColors[id].label}
+                style={{marginRight: '5px'}}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+
+    return null;
+  }
 }
-
 
 
 class FormMessage extends Accounts.ui.FormMessage {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
     };
   }
 
@@ -263,9 +282,9 @@ class FormMessage extends Accounts.ui.FormMessage {
     }
   }
 
-  handleRequestClose() {
+  handleRequestClose = () => {
     this.setState({open: false});
-  };
+  }
 
   render() {
     const {message, type} = this.props;
@@ -273,35 +292,37 @@ class FormMessage extends Accounts.ui.FormMessage {
     switch (type) {
       case 'warning':
         bodyStyle = {
-          backgroundColor: yellow600
+          backgroundColor: yellow600,
         };
         break;
       case 'success':
         bodyStyle = {
-          backgroundColor: green500
+          backgroundColor: green500,
         };
         break;
       case 'error':
         bodyStyle = {
-          backgroundColor: red500
+          backgroundColor: red500,
         };
         break;
       case 'info':
         bodyStyle = {
-          backgroundColor: lightBlue600
+          backgroundColor: lightBlue600,
         };
         break;
     }
 
     return message
-      ? (<Snackbar
-        open={this.state.open}
-        message={message}
-        bodyStyle={bodyStyle}
-        action="OK"
-        autoHideDuration={4000}
-        onActionTouchTap={this.handleRequestClose.bind(this)}
-        onRequestClose={this.handleRequestClose.bind(this)}/>)
+      ? (
+        <Snackbar
+          open={this.state.open}
+          message={message}
+          bodyStyle={bodyStyle}
+          action="OK"
+          autoHideDuration={4000}
+          onActionTouchTap={this.handleRequestClose}
+          onRequestClose={this.handleRequestClose}
+        />)
       : null;
   }
 }
@@ -312,7 +333,7 @@ class FormMessage extends Accounts.ui.FormMessage {
 Accounts.ui.LoginForm = LoginForm;
 Accounts.ui.Form = Form;
 Accounts.ui.Buttons = Buttons;
-Accounts.ui.Button = (React.version.startsWith("16"))?R16Button:R15Button;
+Accounts.ui.Button = (React.version.startsWith('16')) ? R16Button : R15Button;
 Accounts.ui.Fields = Fields;
 Accounts.ui.Field = Field;
 Accounts.ui.FormMessage = FormMessage;
