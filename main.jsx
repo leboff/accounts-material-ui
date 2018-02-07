@@ -81,7 +81,7 @@ class Button extends Accounts.ui.Button {
 
     return (
       <MuiButton
-        raised={type !== 'link'}
+        variant={type === 'link' ? 'flat' : 'raised'}
         href={href}
         className={className}
         onClick={onClick}
@@ -179,7 +179,7 @@ class SocialButtons extends Accounts.ui.SocialButtons {
 
             return (
               <MuiButton
-                raised
+                variant="raised"
                 key={i}
                 type={type}
                 onClick={onClick}
