@@ -1,6 +1,6 @@
 import React from 'react';
 import {Accounts, STATES} from 'meteor/std:accounts-ui';
-import {MuiButton, TextField, Snackbar} from 'material-ui';
+import {Button, TextField, Snackbar} from 'material-ui';
 import {green, red, yellow, lightBlue} from 'material-ui/colors';
 import {socialButtonsStyles, socialButtonIcons} from './social_buttons_config';
 
@@ -66,7 +66,7 @@ class Form extends Accounts.ui.Form {
 
 class Buttons extends Accounts.ui.Buttons {}
 
-class Button extends Accounts.ui.Button {
+class AccountsButton extends Accounts.ui.Button {
   render() {
     const {
       label,
@@ -80,7 +80,7 @@ class Button extends Accounts.ui.Button {
     const Icon = icon;
 
     return (
-      <MuiButton
+      <Button
         variant={type === 'link' ? 'flat' : 'raised'}
         href={href}
         className={className}
@@ -90,7 +90,7 @@ class Button extends Accounts.ui.Button {
       >
         {Icon ? <Icon style={styles.buttonIcon} /> : ''}
         {label}
-      </MuiButton>
+      </Button>
     );
   }
 }
@@ -136,11 +136,11 @@ class Field extends Accounts.ui.Field {
             defaultValue={defaultValue}
             name={id}
             type={type}
-            ref={(ref) => { this.input = ref; }}
+            // ref={(ref) => { this.input = ref; }}
             required={!!required}
             InputProps={{
               inputProps: {
-                autoCapitalize: type === 'email' ? 'none' : false,
+                autoCapitalize: type === 'email' ? 'none' : 'false',
                 autoCorrect: 'off',
               },
             }}
@@ -178,7 +178,7 @@ class SocialButtons extends Accounts.ui.SocialButtons {
             const style = Object.assign(socialButtonsStyles[id] || {}, styles.button);
 
             return (
-              <MuiButton
+              <AccountsButton
                 variant="raised"
                 key={i}
                 type={type}
@@ -189,7 +189,7 @@ class SocialButtons extends Accounts.ui.SocialButtons {
               >
                 {ServiceIcon ? <ServiceIcon style={styles.buttonIcon} /> : ''}
                 {label}
-              </MuiButton>
+              </AccountsButton>
             );
           })}
         </div>
@@ -247,10 +247,10 @@ class FormMessage extends Accounts.ui.FormMessage {
 // Notice! Accounts.ui.LoginForm manages all state logic at the moment, so avoid overwriting this
 // one, but have a look at it and learn how it works. And pull requests altering how that works are
 // welcome. Alter provided default unstyled UI.
-Accounts.ui.LoginForm = LoginForm;
+Accounts.ui.LoginForm = Accounts.ui.LoginForm;
 Accounts.ui.Form = Form;
 Accounts.ui.Buttons = Buttons;
-Accounts.ui.Button = Button;
+Accounts.ui.Button = AccountsButton;
 Accounts.ui.Fields = Fields;
 Accounts.ui.Field = Field;
 Accounts.ui.FormMessage = FormMessage;
